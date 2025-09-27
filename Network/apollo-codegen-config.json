@@ -1,0 +1,45 @@
+{
+    "schemaDownload": {
+      "downloadMethod": {
+        "introspection": {
+          "endpointURL": "https://graphql-pokemon2.vercel.app",
+          "httpMethod": {
+            "POST": {}
+          },
+          "includeDeprecatedInputValues": false,
+          "outputFormat": "SDL"
+        }
+      },
+      "downloadTimeout": 60,
+      "headers": [],
+      "outputPath": "./graphql/schema.graphqls"
+    },
+  "schemaNamespace" : "GraphQLGenCode",
+  "input" : {
+    "operationSearchPaths" : [
+      "**/*.graphql"
+    ],
+    "schemaSearchPaths" : [
+      "**/*.graphqls"
+    ]
+  },
+  "output" : {
+    "testMocks" : {
+      "none" : {
+      }
+    },
+    "schemaTypes" : {
+      "path" : "./PokeAPI",
+      "moduleType" : {
+        "swiftPackageManager" : {
+          "name" : "PokeAPI"
+        }
+      }
+    },
+    "operations" : {
+      "inSchemaModule" : {
+      },
+      
+    }
+  }
+}
