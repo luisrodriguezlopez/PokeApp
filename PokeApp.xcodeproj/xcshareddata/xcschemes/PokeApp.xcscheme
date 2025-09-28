@@ -35,7 +35,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "24967FF12E874FEA0070ED81"
+               BlueprintIdentifier = "246763432E88BEE400722348"
                BuildableName = "PokeAppTests.xctest"
                BlueprintName = "PokeAppTests"
                ReferencedContainer = "container:PokeApp.xcodeproj">

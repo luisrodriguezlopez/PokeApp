@@ -8,21 +8,21 @@
 import UIKit
 import SwiftUI
 
-@main
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var appCoordinator: AppCoordinator?
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+            window = UIWindow(frame: UIScreen.main.bounds)
+            let navigationController = UINavigationController()
 
-        window = UIWindow(frame: UIScreen.main.bounds)
-        let navigationController = UINavigationController()
+            appCoordinator = AppCoordinator.init(navigationController: navigationController)
+            appCoordinator?.start()
+            window?.rootViewController = appCoordinator?.navigationController
 
-        appCoordinator = AppCoordinator(window: window ?? UIWindow(frame: UIScreen.main.bounds))
-               appCoordinator?.start()
-
-
+            window?.makeKeyAndVisible()
         return true
     }
 
