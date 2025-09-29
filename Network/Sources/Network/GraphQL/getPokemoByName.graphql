@@ -1,0 +1,5 @@
+query GetPokemonByName($name: String!) {
+  pokemon(name: $name) {
+      ...PokemonDetails
+  }
+}

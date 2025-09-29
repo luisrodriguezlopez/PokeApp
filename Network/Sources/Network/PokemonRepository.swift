@@ -7,12 +7,12 @@
 import GraphQLGenCode
 import Apollo
 public protocol PokemonRepositoryProtocol {
-    func fetchPokemons() async throws ->  GetPokemonsQuery.Data
+    func fetchPokemons(itemsPerPage: Int) async throws ->  GetPokemonsWithPaginationQuery.Data
 }
 public final class RemotePokemonRepository: PokemonRepositoryProtocol {
     init() {}
-     public func fetchPokemons() async throws ->  GetPokemonsQuery.Data {
+    public func fetchPokemons(itemsPerPage: Int) async throws ->  GetPokemonsWithPaginationQuery.Data {
         let network = NetworkingManager()
-         return try await network.fetch(query: GetPokemonsQuery())
+        return try await network.fetch(query: GetPokemonsWithPaginationQuery(first: itemsPerPage))
     }
 }

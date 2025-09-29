@@ -6,8 +6,5 @@
 //
 
 struct PokemonRowViewModel: Equatable {
-    let id: String
-    let name: String
-    let number: String
-    let imageURL: String
+  let pokemon: PokemonDTO
 }

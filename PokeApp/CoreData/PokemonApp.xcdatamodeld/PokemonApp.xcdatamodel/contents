@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24G90" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Atacks" representedClassName="Atacks" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="damage" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PokemonEntity" representedClassName="PokemonEntity" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="classification" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="number" optional="YES" attributeType="String"/>
+        <attribute name="types" optional="YES" attributeType="String"/>
+        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="evolutions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PokemonEntity" inverseName="preEvolutions" inverseEntity="PokemonEntity"/>
+        <relationship name="preEvolutions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PokemonEntity" inverseName="evolutions" inverseEntity="PokemonEntity"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Atacks"/>
+    </entity>
+</model>

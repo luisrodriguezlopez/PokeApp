@@ -1,28 +1,35 @@
-query GetPokemons {
-  pokemons(first: 10) {
+fragment PokemonDetails on Pokemon {
+  id
+  number
+  name
+  image
+  classification
+  types
+  evolutions {
     id
     number
     name
     image
-    classification
-    types
-    evolutions {
-      id
-      number
+  }
+  attacks {
+    fast {
       name
-      image
+      type
+      damage
     }
-    attacks {
-      fast {
-        name
-        type
-        damage
-      }
-      special {
-        name
-        type    
-        damage
-      }
+    special {
+      name
+      type
+      damage
     }
   }
 }
+
+
+
+query GetPokemonsWithPagination($first: Int!) {
+  pokemons(first: $first) {
+    ...PokemonDetails
+  }
+}
+

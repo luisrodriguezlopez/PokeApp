@@ -10,25 +10,21 @@ import SwiftUI
 
 @testable import PokeApp
 final class PokemonRowTests: XCTestCase {
+    @Namespace private var pokemonTransition
 
     func test_pokemonRow_displaysCorrectNameAndNumber() {
           // Given
-          let viewModel = PokemonRowViewModel(
-              id: "001",
-              name: "Bulbasaur",
-              number: "#001",
-              imageURL: "https://img.pokemondb.net/artwork/bulbasaur.jpg"
-          )
+        let viewModel = PokemonRowViewModel(pokemon: PokemonDTO.init(id: "", number: "001", name: "Bulbasaur", imageURL: URL(string: ""), classification: "", types: [], evolutions: [], attacks: nil))
 
-          let sut = PokemonRow(viewModel: viewModel)
+        let sut = PokemonRow( namespace: pokemonTransition , viewModel: viewModel)
 
         // Act
               let hostingController = UIHostingController(rootView: sut)
 
               // Assert: no debería crashear al cargar
               XCTAssertNotNil(hostingController.view)
-              XCTAssertEqual(hostingController.rootView.viewModel.name, "Bulbasaur")
-              XCTAssertEqual(hostingController.rootView.viewModel.number, "#001")
+        XCTAssertEqual(hostingController.rootView.viewModel.pokemon.name, "Bulbasaur")
+        XCTAssertEqual(hostingController.rootView.viewModel.pokemon.number, "001")
     }
     
 

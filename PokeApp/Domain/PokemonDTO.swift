@@ -7,7 +7,7 @@
 
 import Foundation
 import GraphQLGenCode
-
+import SwiftUI
 struct PokemonDTO: Identifiable, Equatable {
     let id: String
     let number: String
@@ -29,10 +29,9 @@ struct Evolution: Equatable {
 struct Attacks: Equatable {
     var all: [Attack] = []
 
-    init(from gqlAttacks: GetPokemonsQuery.Data.Pokemon.Attacks?) {
+    init(from gqlAttacks: GetPokemonByNameQuery.Data.Pokemon.Attacks?) {
         guard let gqlAttacks = gqlAttacks else { return }
 
-        // Fast attacks
         if let fast = gqlAttacks.fast?.compactMap({ $0 }) {
             all.append(contentsOf: fast.map {
                 Attack(name: $0.name ?? "",
@@ -70,12 +69,12 @@ struct Attack: Equatable {
 
 // MARK: - Mapper
 struct PokemonMapper {
-    static func map(_ data: GetPokemonsQuery.Data) -> [PokemonDTO] {
+    static func map(_ data: GetPokemonsWithPaginationQuery.Data) -> [PokemonDTO] {
         guard let gqlPokemons = data.pokemons?.compactMap({ $0 }) else { return [] }
         return gqlPokemons.map { mapPokemon($0) }
     }
 
-    private static func mapPokemon(_ gql: GetPokemonsQuery.Data.Pokemon) -> PokemonDTO {
+    private static func mapPokemon(_ gql: GetPokemonsWithPaginationQuery.Data.Pokemon) -> PokemonDTO {
         let evolutions: [PokemonDTO]? = gql.evolutions?.compactMap { $0 }.map { evo in
             PokemonDTO(id: evo.id,
                     number: evo.number ?? "",
@@ -97,5 +96,23 @@ struct PokemonMapper {
             evolutions: evolutions ?? [],
             attacks: Attacks(from: gql.attacks)
         )
+    }
+}
+
+
+extension PokemonDTO {
+    func typeColor() -> Color {
+        switch types.first {
+        case "Water" :
+            return .blue
+        case "Grass" , "Bug" :
+            return .green
+        case "Electric":
+            return .yellow
+        case "Fire":
+            return .red
+        default:
+            return .brown
+        }
     }
 }
