@@ -36,7 +36,7 @@ class AppCoordinator: AppCoordinatorProtocol {
             case .revoked, .notFound:
                 // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
                 DispatchQueue.main.async {
-                    self.showPokemonList()
+                    self.showLogin()
                 }
             default:
                 break
